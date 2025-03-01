@@ -1,0 +1,27 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+
+const fortunes = ["Good luck is coming!", "Happiness is near!", "Expect great things!"];
+const jokes = ["Why don’t skeletons fight? They don’t have the guts!", "I told my wife she was drawing her eyebrows too high. She looked surprised!"];
+const facts = ["Bananas are berries!", "Octopuses have three hearts!", "Honey never spoils!"];
+
+function getRandomItem(list) {
+    let randomIndex = Math.floor(Math.random() * list.length);
+    let item = list[randomIndex];
+    return item;
+}
+
+app.get('/fortune', function (req, res) {
+    let randomFortune = getRandomItem(fortunes);
+    res.send(randomFortune);
+});
+
+app.get('/joke', function (req, res) {
+    let randomJoke = getRandomItem(jokes);
+    res.send(randomJoke);
+});
+
+app.listen(port, function () {
+    console.log("Server is running at http://localhost:" + port);
+});
